@@ -61,18 +61,22 @@ main {
   -webkit-appearance: none;
   padding: 0 0.25em;
 }
+.settings .inputs > div input:focus, .settings .inputs > div select:focus {
+  outline: 0;
+}
 .settings .output {
   padding: 0.65em 1em 0.75em;
-  margin: 0 0 1em;
 }
 
 .output_container {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .output_container canvas {
   background: #fff;
+  margin-bottom: 10vh;
 }
 
 /*# sourceMappingURL=/style.97fcb138.css.map */

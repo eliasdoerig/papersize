@@ -62,19 +62,23 @@ main{
                     padding: 0 .25em;
                 }
             }
+            input:focus, select:focus{
+                outline: 0;
+            }
         }
     }
     .output{
         padding: .65em 1em .75em;
-        margin: 0 0 1em;
     }
 }
 .output_container{
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     canvas{
         background: #fff;
+        margin-bottom: 10vh;
     }
 }
 

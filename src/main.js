@@ -41,20 +41,33 @@
     function changeHtml(){
         drawOnCanvas();
         let p_s = calcItems();
-        d.innerHTML = `Pieces/sheet: ${p_s} <br>`;
-        let s = Math.ceil(printRun/(p_s));
+        let p_s_tot = p_s[0] * p_s[1];
+        d.innerHTML = `Pieces/sheet: ${p_s_tot} <br>`;
+        let s = Math.ceil(printRun/(p_s_tot));
         d.innerHTML += `You need ${s} ${s == 1 ? 'sheet' : 'sheets'}`;
     }
 
     function drawOnCanvas(){
-        let pixelRatio = window.devicePixelRatio
+        const pixelRatio = window.devicePixelRatio
+        
+        const items = calcItems();
+        const w = items[0];
+        const h = items[1];
+
         const paperW = paperSize[0] * pixelRatio
         const paperH = paperSize[1] * pixelRatio
-        const printW = printWidth * pixelRatio
-        const printH = printHeight * pixelRatio
+        let printW = 0, printH = 0;
 
-        let w = Math.floor((paperW-minMargin)/printW);
-        let h = Math.floor((paperH-minMargin)/printH);
+        if(items[2]){
+            //if true rotate
+             printH = printWidth * pixelRatio
+             printW = printHeight * pixelRatio
+        }else{
+            //else normal
+             printW = printWidth * pixelRatio
+             printH = printHeight * pixelRatio
+        }
+                
         const ctx = canvas.getContext('2d');
         canvas.width = paperW;
         canvas.height = paperH;
@@ -71,9 +84,17 @@
       }
 
     function calcItems(){
-        let w = Math.floor((paperSize[0]-minMargin)/printWidth);
-        let h = Math.floor((paperSize[1]-minMargin)/printHeight);
-        return w * h;
+        //normal
+        let h = Math.floor((paperSize[0]-minMargin)/printWidth);
+        let w = Math.floor((paperSize[1]-minMargin)/printHeight);
+        //rotate
+        let hr = Math.floor((paperSize[0]-minMargin)/printHeight);
+        let wr = Math.floor((paperSize[1]-minMargin)/printWidth);
+
+        if(h * w > hr * wr){
+            return [h, w, false];
+        }
+        return [hr, wr, true];
     }
 
     changeHtml();

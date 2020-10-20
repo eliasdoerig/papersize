@@ -159,19 +159,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   function changeHtml() {
     drawOnCanvas();
     var p_s = calcItems();
-    d.innerHTML = "Pieces/sheet: ".concat(p_s, " <br>");
-    var s = Math.ceil(printRun / p_s);
+    var p_s_tot = p_s[0] * p_s[1];
+    d.innerHTML = "Pieces/sheet: ".concat(p_s_tot, " <br>");
+    var s = Math.ceil(printRun / p_s_tot);
     d.innerHTML += "You need ".concat(s, " ").concat(s == 1 ? 'sheet' : 'sheets');
   }
 
   function drawOnCanvas() {
     var pixelRatio = window.devicePixelRatio;
+    var items = calcItems();
+    var w = items[0];
+    var h = items[1];
     var paperW = paperSize[0] * pixelRatio;
     var paperH = paperSize[1] * pixelRatio;
-    var printW = printWidth * pixelRatio;
-    var printH = printHeight * pixelRatio;
-    var w = Math.floor((paperW - minMargin) / printW);
-    var h = Math.floor((paperH - minMargin) / printH);
+    var printW = 0,
+        printH = 0;
+
+    if (items[2]) {
+      //if true rotate
+      printH = printWidth * pixelRatio;
+      printW = printHeight * pixelRatio;
+    } else {
+      //else normal
+      printW = printWidth * pixelRatio;
+      printH = printHeight * pixelRatio;
+    }
+
     var ctx = canvas.getContext('2d');
     canvas.width = paperW;
     canvas.height = paperH;
@@ -189,9 +202,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   function calcItems() {
-    var w = Math.floor((paperSize[0] - minMargin) / printWidth);
-    var h = Math.floor((paperSize[1] - minMargin) / printHeight);
-    return w * h;
+    //normal
+    var h = Math.floor((paperSize[0] - minMargin) / printWidth);
+    var w = Math.floor((paperSize[1] - minMargin) / printHeight); //rotate
+
+    var hr = Math.floor((paperSize[0] - minMargin) / printHeight);
+    var wr = Math.floor((paperSize[1] - minMargin) / printWidth);
+
+    if (h * w > hr * wr) {
+      return [h, w, false];
+    }
+
+    return [hr, wr, true];
   }
 
   changeHtml();
