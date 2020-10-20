@@ -165,17 +165,25 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   function drawOnCanvas() {
-    var w = Math.floor((paperSize[0] - minMargin) / printWidth);
-    var h = Math.floor((paperSize[1] - minMargin) / printHeight);
+    var pixelRatio = window.devicePixelRatio;
+    var paperW = paperSize[0] * pixelRatio;
+    var paperH = paperSize[1] * pixelRatio;
+    var printW = printWidth * pixelRatio;
+    var printH = printHeight * pixelRatio;
+    var w = Math.floor((paperW - minMargin) / printW);
+    var h = Math.floor((paperH - minMargin) / printH);
     var ctx = canvas.getContext('2d');
-    canvas.width = paperSize[0];
-    canvas.height = paperSize[1];
+    canvas.width = paperW;
+    canvas.height = paperH;
+    canvas.style.width = "".concat(paperW / pixelRatio, "px");
+    canvas.style.height = "".concat(paperH / pixelRatio, "px");
     ctx.strokeStyle = '#000000';
-    ctx.setTransform(1, 0, 0, 1, (paperSize[0] - printWidth * w) / 2, (paperSize[1] - printHeight * h) / 2);
+    ctx.strokeWeight = pixelRatio;
+    ctx.setTransform(1, 0, 0, 1, (paperW - printW * w) / 2, (paperH - printH * h) / 2);
 
     for (var y = 0; y < h; y++) {
       for (var x = 0; x < w; x++) {
-        ctx.strokeRect(x * printWidth, y * printHeight, printWidth, printHeight);
+        ctx.strokeRect(x * printW, y * printH, printW, printH);
       }
     }
   }
@@ -216,7 +224,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63406" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51135" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

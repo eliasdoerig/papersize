@@ -47,16 +47,25 @@
     }
 
     function drawOnCanvas(){
-        let w = Math.floor((paperSize[0]-minMargin)/printWidth);
-        let h = Math.floor((paperSize[1]-minMargin)/printHeight);
+        let pixelRatio = window.devicePixelRatio
+        const paperW = paperSize[0] * pixelRatio
+        const paperH = paperSize[1] * pixelRatio
+        const printW = printWidth * pixelRatio
+        const printH = printHeight * pixelRatio
+
+        let w = Math.floor((paperW-minMargin)/printW);
+        let h = Math.floor((paperH-minMargin)/printH);
         const ctx = canvas.getContext('2d');
-        canvas.width = paperSize[0];
-        canvas.height = paperSize[1];
+        canvas.width = paperW;
+        canvas.height = paperH;
+        canvas.style.width = `${paperW/pixelRatio}px`;
+        canvas.style.height = `${paperH/pixelRatio}px`;
         ctx.strokeStyle = '#000000';
-        ctx.setTransform(1, 0, 0, 1, (paperSize[0]-printWidth*w)/2, (paperSize[1]-printHeight*h)/2);
+        ctx.strokeWeight= pixelRatio;
+        ctx.setTransform(1, 0, 0, 1, (paperW-printW*w)/2, (paperH-printH*h)/2);
         for(let y = 0; y < h; y++){
             for(let x = 0; x < w; x++){
-                ctx.strokeRect(x * printWidth, y * printHeight, printWidth, printHeight);
+                ctx.strokeRect(x * printW, y * printH, printW, printH);
             }
         }
       }
