@@ -12,6 +12,7 @@ body{
 body{
     font-size: 20px;
     font-family: Helvetica, sans-serif;
+    background: #eee;
 }
 
 main{
@@ -22,32 +23,44 @@ main{
 
 .settings{
     .inputs{
-        padding: .65em 1em .75em;
-        background: #000000;
-        color: #eeeeee;
-        label{
+        border-bottom: solid 1px #5a5a5a;
+        background: #fff;
+        > div{
             display: inline-block;
-            margin: 0 1em 0 0;
-        }
-        input[type=number]{
-            -webkit-appearance: none;
-            border: 0;
-            font-size: .9em;
-            padding: 0 .25em;
-            width: 120px;
-        }
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none;
-        }
-        select{
-            -webkit-appearance: none;
-            padding: 0 .25em;
-            border-radius: 0;
-            font-size: .9em;
-            option{
+            padding: .65em 1em .75em;
+            border-right: solid 1px #5a5a5a;
+
+            > * + *{
+                margin-right: 2em;
+            }
+        
+            label, div{
+                display: inline-block;
+                margin: 0 1em 0 0;
+            }
+            input[type=number]{
                 -webkit-appearance: none;
-                padding: 0 .25em;
+                border: 0;
+                background: #eee;
+                font-size: .9em;
+                padding: .25em .5em;
+                width: 80px;
+            }
+            input[type=number]::-webkit-inner-spin-button, 
+            input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            }
+            select{
+                -webkit-appearance: none;
+                padding: .25em .5em;
+                background: #eee;
+                border: 0;
+                border-radius: 0;
+                font-size: .9em;
+                option{
+                    -webkit-appearance: none;
+                    padding: 0 .25em;
+                }
             }
         }
     }
@@ -60,6 +73,9 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
+    canvas{
+        background: #fff;
+    }
 }
 
 

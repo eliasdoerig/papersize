@@ -11,25 +11,33 @@
         <main>
             <div class="settings">
                 <div class="inputs" id="inputs">
-                    <label for="paperSize" >Paper size
+                    <div>
+                        <label for="paperSize" >Paper size</label>
                         <select id="paperSize">
                             <option value="B1">B1 (700×1000mm)</option>
-                            <option value="B2">B2 (500×700mm)</option>
+                            <option value="B2" selected>B2 (500×700mm)</option>
                             <option value="C2">C2 (460×640mm)</option>
                             <option value="A3plus">A3+ (320×450mm)</option>
                             <option value="A3">A3 (297×420mm)</option>
                             <option value="A4">A4 (210×297mm)</option>
                         </select>
-                    </label>
-                    <label for="printWidth" >Print width
-                        <input id="printWidth" type="number" value="55">
-                    </label>
-                    <label for="printHeight" >Print height
-                        <input id="printHeight" type="number" value="85">
-                    </label>
-                    <label for="printRun" >Print run
+                    </div>
+                    <div>
+                        <div>
+                            <label for="printWidth" >Print width</label>
+                            <input id="printWidth" type="number" value="55">
+                            mm
+                        </div>
+                        <div>
+                            <label for="printHeight" >Print height</label>
+                            <input id="printHeight" type="number" value="85">
+                            mm
+                        </div>
+                    </div>
+                    <div>
+                        <label for="printRun" >Print run</label>
                         <input id="printRun" type="number" value="1">
-                    </label>
+                    </div>
                 </div>
                 <div class="output" id="output"></div>
             </div>

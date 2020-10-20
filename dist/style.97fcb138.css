@@ -12,6 +12,7 @@ body {
 body {
   font-size: 20px;
   font-family: Helvetica, sans-serif;
+  background: #eee;
 }
 
 main {
@@ -21,32 +22,42 @@ main {
 }
 
 .settings .inputs {
-  padding: 0.65em 1em 0.75em;
-  background: #000000;
-  color: #eeeeee;
+  border-bottom: solid 1px #5a5a5a;
+  background: #fff;
 }
-.settings .inputs label {
+.settings .inputs > div {
+  display: inline-block;
+  padding: 0.65em 1em 0.75em;
+  border-right: solid 1px #5a5a5a;
+}
+.settings .inputs > div > * + * {
+  margin-right: 2em;
+}
+.settings .inputs > div label, .settings .inputs > div div {
   display: inline-block;
   margin: 0 1em 0 0;
 }
-.settings .inputs input[type=number] {
+.settings .inputs > div input[type=number] {
   -webkit-appearance: none;
   border: 0;
+  background: #eee;
   font-size: 0.9em;
-  padding: 0 0.25em;
-  width: 120px;
+  padding: 0.25em 0.5em;
+  width: 80px;
 }
-.settings .inputs input[type=number]::-webkit-inner-spin-button,
-.settings .inputs input[type=number]::-webkit-outer-spin-button {
+.settings .inputs > div input[type=number]::-webkit-inner-spin-button,
+.settings .inputs > div input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
-.settings .inputs select {
+.settings .inputs > div select {
   -webkit-appearance: none;
-  padding: 0 0.25em;
+  padding: 0.25em 0.5em;
+  background: #eee;
+  border: 0;
   border-radius: 0;
   font-size: 0.9em;
 }
-.settings .inputs select option {
+.settings .inputs > div select option {
   -webkit-appearance: none;
   padding: 0 0.25em;
 }
@@ -59,6 +70,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.output_container canvas {
+  background: #fff;
 }
 
 /*# sourceMappingURL=/style.97fcb138.css.map */

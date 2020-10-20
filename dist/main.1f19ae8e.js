@@ -151,7 +151,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     printRun = e.target.value;
     changeHtml();
   });
-  var paperSize = paperSizes.B1;
+  var paperSize = paperSizes.B2;
   var printWidth = printWidthInput.value;
   var printHeight = printHeightInput.value;
   var printRun = 1;
@@ -171,7 +171,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     canvas.width = paperSize[0];
     canvas.height = paperSize[1];
     ctx.strokeStyle = '#000000';
-    ctx.strokeRect(0, 0, paperSize[0], paperSize[1]);
     ctx.setTransform(1, 0, 0, 1, (paperSize[0] - printWidth * w) / 2, (paperSize[1] - printHeight * h) / 2);
 
     for (var y = 0; y < h; y++) {
@@ -217,7 +216,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60277" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63406" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
