@@ -119,17 +119,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"main.js":[function(require,module,exports) {
 (function (document) {
+  var paperSizes = {
+    B1: [1000, 700],
+    B2: [700, 500],
+    C2: [640, 460],
+    A3plus: [450, 320],
+    A3: [420, 297],
+    A4: [297, 210]
+  };
   var d = document.getElementById('output');
   var canvas = document.getElementById('output_canvas');
   var minMargin = 10 * 2;
-  var paperWidthInput = document.getElementById('paperWidth');
+  var paperWidthInput = document.getElementById('paperSize');
   paperWidthInput.addEventListener('change', function (e) {
-    paperWidth = e.target.value;
-    changeHtml();
-  });
-  var paperHeightInput = document.getElementById('paperHeight');
-  paperHeightInput.addEventListener('change', function (e) {
-    paperHeight = e.target.value;
+    paperSize = paperSizes[e.target.value];
+    console.log("Paper size: ".concat(paperSize.join(', ')));
     changeHtml();
   });
   var printWidthInput = document.getElementById('printWidth');
@@ -147,8 +151,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
     printRun = e.target.value;
     changeHtml();
   });
-  var paperWidth = paperWidthInput.value;
-  var paperHeight = paperHeightInput.value;
+  var paperSize = paperSizes.B1;
   var printWidth = printWidthInput.value;
   var printHeight = printHeightInput.value;
   var printRun = 1;
@@ -162,14 +165,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   function drawOnCanvas() {
-    var w = Math.floor((paperWidth - minMargin) / printWidth);
-    var h = Math.floor((paperHeight - minMargin) / printHeight);
+    var w = Math.floor((paperSize[0] - minMargin) / printWidth);
+    var h = Math.floor((paperSize[1] - minMargin) / printHeight);
     var ctx = canvas.getContext('2d');
-    canvas.width = paperWidth;
-    canvas.height = paperHeight;
+    canvas.width = paperSize[0];
+    canvas.height = paperSize[1];
     ctx.strokeStyle = '#000000';
-    ctx.strokeRect(0, 0, paperWidth, paperHeight);
-    ctx.setTransform(1, 0, 0, 1, (paperWidth - printWidth * w) / 2, (paperHeight - printHeight * h) / 2);
+    ctx.strokeRect(0, 0, paperSize[0], paperSize[1]);
+    ctx.setTransform(1, 0, 0, 1, (paperSize[0] - printWidth * w) / 2, (paperSize[1] - printHeight * h) / 2);
 
     for (var y = 0; y < h; y++) {
       for (var x = 0; x < w; x++) {
@@ -179,14 +182,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   function calcItems() {
-    var w = Math.floor((paperWidth - minMargin) / printWidth);
-    var h = Math.floor((paperHeight - minMargin) / printHeight);
+    var w = Math.floor((paperSize[0] - minMargin) / printWidth);
+    var h = Math.floor((paperSize[1] - minMargin) / printHeight);
     return w * h;
   }
 
   changeHtml();
 })(document);
-},{}],"../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -214,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60277" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -390,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map

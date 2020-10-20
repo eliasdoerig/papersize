@@ -31,9 +31,7 @@ main {
 }
 .settings .inputs input[type=number] {
   -webkit-appearance: none;
-  background: #000000;
-  color: #eeeeee;
-  border: solid 1px #eeeeee;
+  border: 0;
   font-size: 0.9em;
   padding: 0 0.25em;
   width: 120px;
@@ -41,6 +39,16 @@ main {
 .settings .inputs input[type=number]::-webkit-inner-spin-button,
 .settings .inputs input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+.settings .inputs select {
+  -webkit-appearance: none;
+  padding: 0 0.25em;
+  border-radius: 0;
+  font-size: 0.9em;
+}
+.settings .inputs select option {
+  -webkit-appearance: none;
+  padding: 0 0.25em;
 }
 .settings .output {
   padding: 0.65em 1em 0.75em;

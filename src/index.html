@@ -11,11 +11,15 @@
         <main>
             <div class="settings">
                 <div class="inputs" id="inputs">
-                    <label for="paperWidth" >Paper width
-                        <input id="paperWidth" type="number" value="500">
-                    </label>
-                    <label for="paperHeight" >Paper height
-                        <input id="paperHeight" type="number" value="700">
+                    <label for="paperSize" >Paper size
+                        <select id="paperSize">
+                            <option value="B1">B1 (700×1000mm)</option>
+                            <option value="B2">B2 (500×700mm)</option>
+                            <option value="C2">C2 (460×640mm)</option>
+                            <option value="A3plus">A3+ (320×450mm)</option>
+                            <option value="A3">A3 (297×420mm)</option>
+                            <option value="A4">A4 (210×297mm)</option>
+                        </select>
                     </label>
                     <label for="printWidth" >Print width
                         <input id="printWidth" type="number" value="55">
